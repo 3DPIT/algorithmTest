@@ -20,8 +20,6 @@ int main(void)
 			cout << v[j][0][i];
 		}
 	}
-
-
-	return 0;// ¸®ÅÏ
+	return 0;
 
 }

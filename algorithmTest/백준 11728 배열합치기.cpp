@@ -6,6 +6,14 @@
 using namespace std;
 int N, M;
 vector<int>v;
+void print() {//프린트 분리
+	sort(v.begin(), v.end());//벡터 정렬
+	for (int i = 0; i < v.size(); i++) {
+		printf("%d ", v[i]);// 벡터 출력
+
+	}
+	cout << endl;
+}
 void init() {
 	scanf("%d %d", &N, &M);
 	for (int i = 0; i < N; i++) {
@@ -18,12 +26,7 @@ void init() {
 		scanf("%d", &a);
 		v.push_back(a);
 	}
-	sort(v.begin(), v.end());//벡터 정렬
-	for (int i = 0; i < v.size(); i++) {
-		printf("%d ", v[i]);// 벡터 출력
-
-	}
-	cout << endl;
+	print();
 }
 int main(void)
 {

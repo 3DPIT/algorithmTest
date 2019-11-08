@@ -33,5 +33,8 @@
     <ClCompile Include="2018 KAKAO BLIND RECRUITMENT 프렌즈4블록.cpp">
       <Filter>카카오 문제</Filter>
     </ClCompile>
+    <ClCompile Include="2018 KAKAO BLIND RECRUITMENT 캐시.cpp">
+      <Filter>카카오 문제</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

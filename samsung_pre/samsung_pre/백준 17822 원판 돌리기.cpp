@@ -23,8 +23,7 @@ void sumNum() {
 void dfs(int y, int x, int sameNum) {
 	for (int dir = 0; dir < 4; dir++) {
 		int ny = y + dy[dir]; int nx = x + dx[dir];
-		if (ny <= 0)continue;
-		if (ny > N)continue;
+		if (ny <= 0||ny>N)continue;
 		if (nx <= 0)nx = M;
 		if (nx > M)nx = 1;
 		if (chk[ny][nx] == 0 && num[ny][nx] == sameNum && num[ny][nx] != 0) {
@@ -37,6 +36,7 @@ void dfs(int y, int x, int sameNum) {
 	}
 }
 void searchNum() {
+	flag1 = 0;
 	memset(chk, 0, sizeof(chk));
 	for (int i = 1; i <= N; i++) {
 		for (int j = 1; j <= M; j++) {
@@ -82,7 +82,7 @@ void calNum(int sum, int cnt) {
 void rotCir() {//원판 돌리기 시뮬
 	for (int t = 0; t < T; t++) {
 		scanf("%d %d %d", &xi, &di, &ki);
-		for (int i = 1; i <= M; i++) {
+		for (int i = 1; i <= N; i++) {// 너무 너무한 치명적 실수M으로 해서 틀렸었음
 			if (i % xi == 0) {//xi의 배수이면
 				if (di == 0) {
 					for (int k = 0; k < ki; k++) {

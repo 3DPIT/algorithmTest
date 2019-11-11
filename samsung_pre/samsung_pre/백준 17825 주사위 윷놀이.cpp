@@ -62,7 +62,7 @@ void dfs(int idx) {
 		return;
 	}
 	vector<Data>CH[5];
-	for (int i = 1; i <= 4; i++) {
+	for (int i = 1; i <= 4; i++) {//
 		copy(CH, H);
 		v.push_back(i);
 		dfs(i);

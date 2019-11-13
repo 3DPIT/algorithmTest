@@ -139,6 +139,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\AppData\Local\Temp\TFSTemp\2020 KAKAO BLIND RECRUITMENT 블록 이동하기.cpp" />
+    <ClCompile Include="..\..\..\..\..\AppData\Local\Temp\TFSTemp\백준 17779 게리맨더링2.cpp" />
     <ClCompile Include="백준 17822 원판 돌리기.cpp" />
     <ClCompile Include="백준 17825 주사위 윷놀이.cpp" />
   </ItemGroup>

@@ -13,7 +13,7 @@ void copy(vector<Data>CA[5], vector<Data>A[5]) {
 		CA[i] = A[i];
 	}
 }
-void print(int idx, int num) {
+void print(int idx, int num) {// 다시 풀이
 	for (int i = 1; i <= map[num]; i++) {
 		if (H[idx].front().num == 40)continue;
 		H[idx].front().num += H[i].front().plus;

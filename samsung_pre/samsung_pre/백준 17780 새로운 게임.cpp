@@ -72,7 +72,7 @@ void play() {
 			else if(input[n.y][n.x]==0){
 				wSpace(c,n);
 			}
-			//빨간공간인경우
+			//빨간공간인경우//
 			else if (input[n.y][n.x] == 1) {
 				rSpace(c,n);
 			}

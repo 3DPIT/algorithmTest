@@ -8,7 +8,7 @@ using namespace std;
 int ret;
 int N, M, K;
 int input[NS][MS];
-int Min = 0x7fffffff;
+int Min = 0x7fffffff;//
 bool chkFilm() {
 	int C = 0;
 	for (int x = 0; x < M; x++) {

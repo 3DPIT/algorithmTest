@@ -21,10 +21,16 @@
     <ClCompile Include="백준 17825 주사위 윷놀이.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="백준 17779 게리맨더링2.cpp">
+    <ClCompile Include="[모의 SW 역량테스트] 보호 필름.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="2020 KAKAO BLIND RECRUITMENT 블록 이동하기.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="백준 17779 게리맨더링2.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="백준 17780 새로운 게임.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

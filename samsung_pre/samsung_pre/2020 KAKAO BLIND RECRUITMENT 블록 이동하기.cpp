@@ -3,136 +3,151 @@
 #include<queue>
 #include<iostream>
 using namespace std;
-#define N 101
-int cN;
-int input[N][N];//board 저장할 전역변수
-int chk[N][N][N][N][3];//방문체크할 배열
-int dy[] = { -1,0,1,0,1,-1 };//상,하,좌,우,반시계, 시계
-int dx[] = { 0,1,0,-1,1,1 };
+#define NS 101
+int N;
+int input[NS][NS];//board 저장할 전역변수
+int chk[NS][NS][2];//방문체크할 배열
+int dy[] = { -1,1,0,0,1,-1,-1,1,-1,-1,1,1 };//상,하,좌,우,반시계, 시계
+int dx[] = { 0,0,-1,1,-1,-1,1,1,-1,1,1,-1 };
 int ret;
 struct Data {
-	int y, x, y1, x1, cnt;
+	int y, x, dir, cnt;
 };
-void copy(int input[N][N], vector<vector<int> >board) {
-	cN = board.size();
+void copy(int input[NS][NS], vector<vector<int> >board) {
+	N = board.size();
 	for (int i = 0; i < board.size(); i++) {
 		for (int j = 0; j < board.size(); j++) {
 			input[i + 1][j + 1] = board[i][j];
 		}
 	}
 }
+bool safe(Data n) {
+	if (n.y<1 || n.y>N || n.x<1 || n.x>N)return false;
+	return true;
+}
 void BFS() {
-
 	queue<Data>q;
-	q.push({ 1,1,1,2,0 });
-	chk[1][1][1][2][0] = 1;
+	q.push({ 1,1,0,0 });
+	chk[1][1][0] = 1;
 	while (!q.empty()) {
 		Data c = q.front(); q.pop();
-		if ((c.y == cN && c.x == cN) || (c.y1 == cN && c.x1 == cN)) {// 도달시
+		if (c.dir == 0 & ((c.y == N && c.x + 1 == N) || (c.y == N && c.x == N))) {
 			ret = c.cnt;
 			return;
 		}
-		for (int dir = 0; dir < 6; dir++) {
-			Data n;
-			if (dir == 4 || dir == 5) {//회전의 경우
-				if (c.y == c.y1) {
-					//수평 y1 x1 축을 중심으로 이동
-					n.y = c.y + dy[dir]; n.x = c.x + dx[dir];
-					n.y1 = c.y1; n.x1 = c.x1;
-					n.cnt = c.cnt + 1;
-					if (!(n.y<1 || n.y>cN || n.x<1 || n.x>cN || c.y + 1 < 1 || c.y + 1 > cN || c.x + 1 < 1 || c.x > cN)
-						&& dir == 4 && chk[n.y][n.x][n.y1][n.x1][dir - 3] == 0) {
-						if (input[n.y][n.x] != 1 && input[c.y + 1][c.x + 1] != 1) {//반시계 이동
-							chk[n.y][n.x][n.y1][n.x1][dir - 3] = 1;
-							q.push(n);
-						}
-					}
-					else {
-						if (!(n.y<1 || n.y>cN || n.x<1 || n.x>cN || c.y - 1 < 1 || c.y > cN || c.x + 1 < 1 || c.x > cN)
-							&& input[n.y][n.x] != 1 && input[c.y - 1][c.x + 1] != 1) {//시계 이동
-							chk[n.y][n.x][n.y1][n.x1][dir - 3] = 1;
-							q.push(n);
-						}
-					}
-					//수평 y,x 축을 중심으로 이동
-					n.y = c.y; n.x = c.x;
-					n.y1 = c.y1 - dy[dir]; n.x1 = c.x1 - dx[dir];
-					n.cnt = c.cnt + 1;
-					if (!(n.y1<1 || n.y1>cN || n.x1<1 || n.x1>cN || c.y1 - 1 < 1 || c.y1 - 1 > cN || c.x1<1 || c.x1>cN)
-						&& dir == 4 && chk[n.y][n.x][n.y1][n.x1][dir - 3] == 0) {
-						if (input[n.y1][n.x1] != 1 && input[c.y1 - 1][c.x] != 1) {//반시계 이동
-							chk[n.y][n.x][n.y1][n.x1][dir - 3] = 1;
-							q.push(n);
-						}
-					}
-					else {
-						if (!(n.y1<1 || n.y1>cN || n.x1<1 || n.x1>cN || c.y1 - 1 < 1 || c.y1 - 1 > cN || c.x1 + 1 < 1 || c.x1 + 1 > cN)
-							&& input[n.y1][n.x1] != 1 && input[c.y1 - 1][c.x1 + 1] != 1) {//시계 이동
-							chk[n.y][n.x][n.y1][n.x1][dir - 3] = 1;							q.push(n);
-							q.push(n);
-						}
-					}
+		if (c.dir == 1 & ((c.y + 1 == N && c.x == N) || (c.y == N && c.x == N))) {
+			ret = c.cnt;
+			return;
+		}
+		//상하좌우 이동
+		//수평인 경우 대각선 이동
+		if (c.dir == 0) {
+			for (int dir = 0; dir < 4; dir++) {
+				//상//
+				if (dir == 0 && safe({ c.y - 1 ,c.x,0,0 }) && input[c.y - 1][c.x] == 0 && safe({ c.y - 1 ,c.x + 1,0,0 }) && input[c.y - 1][c.x + 1] == 0
+					&& chk[c.y - 1][c.x][0] == 0) {
+					chk[c.y - 1][c.x][0] = 1;
+					q.push({ c.y - 1,c.x,0,c.cnt + 1 });
 				}
-				else if (c.x == c.x1) {
-					//수직y1 x1 축을 중심으로 이동
-					n.y = c.y - dy[dir]; n.x = c.x - dx[dir];
-					n.y1 = c.y1; n.x1 = c.x1;
-					n.cnt = c.cnt + 1;
-					if (n.y<1 || n.y>cN || n.x<1 || n.x>cN || n.y1<1 || n.y1>cN || n.x1<1 || n.x1>cN)continue;
-					if (dir == 4 && chk[n.y][n.x][n.y1][n.x1][dir - 3] == 0) {
-						if (input[n.y][n.x] != 1 && input[c.y][c.x + 1] != 1) {//시계 이동
-							chk[n.y][n.x][n.y1][n.x1][dir - 3] = 1;
-							q.push(n);
-						}
-					}
-					else {
-						if (input[n.y][n.x] != 1 && input[c.y][c.x - 1] != 1) {//반시계 이동
-							chk[n.y][n.x][n.y1][n.x1][dir - 3] = 1;
-							q.push(n);
-						}
-					}
-					//수직 y,x 축을 중심으로 이동
-					n.y = c.y; n.x = c.x;
-					n.y1 = c.y1 - dy[dir]; n.x1 = c.x1 - dx[dir];
-					n.cnt = c.cnt + 1;
-					if (n.y<1 || n.y>cN || n.x<1 || n.x>cN || n.y1<1 || n.y1>cN || n.x1<1 || n.x1>cN)continue;
-					if (dir == 4 && chk[n.y][n.x][n.y1][n.x1][dir - 3] == 0) {
-						if (input[n.y1][n.x1] != 1 && input[c.y1 - 1][c.x1 - 1] != 1) {//시계 이동
-							chk[n.y][n.x][n.y1][n.x1][dir - 3] = 1;
-							q.push(n);
-						}
-					}
-					else {
-						if (input[n.y1][n.x1] != 1 && input[c.y1 + 1][c.x1 - 1] != 1) {//반시계 이동
-							chk[n.y][n.x][n.y1][n.x1][dir - 3] = 1;
-							q.push(n);
-						}
-					}
-
+				//하//
+				if (dir == 1 && safe({ c.y + 1 ,c.x,0,0 }) && input[c.y + 1][c.x] == 0 && safe({ c.y + 1 ,c.x + 1 ,0,0 }) && input[c.y + 1][c.x + 1] == 0
+					&& chk[c.y + 1][c.x][0] == 0) {
+					chk[c.y + 1][c.x][0] = 1;
+					q.push({ c.y + 1,c.x,0,c.cnt + 1 });
+				}
+				//좌//
+				if (dir == 2 && safe({ c.y  ,c.x - 1,0,0 }) && input[c.y][c.x - 1] == 0
+					&& chk[c.y][c.x - 1][0] == 0) {
+					chk[c.y][c.x - 1][0] = 1;
+					q.push({ c.y,c.x - 1,0,c.cnt + 1 });
+				}
+				//우//
+				if (dir == 3 && safe({ c.y ,c.x + 2,0,0 }) && input[c.y][c.x + 2] == 0
+					&& chk[c.y][c.x+1][0] == 0) {
+					chk[c.y][c.x+1][0] = 1;
+					q.push({ c.y,c.x+1,0,c.cnt + 1 });
 				}
 			}
-			else {//상하좌우 경우
-				n.y = c.y + dy[dir]; n.x = c.x + dx[dir];
-				n.y1 = c.y1 + dy[dir]; n.x1 = c.x1 + dx[dir];
-				n.cnt = c.cnt + 1;
-				if (n.y<1 || n.y>cN || n.x<1 || n.x>cN || n.y1<1 || n.y1>cN || n.x1<1 || n.x1>cN)continue;
-				if (chk[n.y][n.x][n.y1][n.x1][0] == 0) {
-					if (dir == 0 || dir == 2) {//상하 인경우 
-						if (input[n.y][n.x] == 0 && input[n.y1][n.x1] == 0) {
-							chk[n.y][n.x][n.y1][n.x1][0] = 1;
-							q.push(n);
-						}
-					}
-					else {//좌우 인경우
-						if (dir == 1 & input[n.y1][n.x1] == 0) {//우측
-							chk[n.y][n.x][n.y1][n.x1][0] = 1;
-							q.push(n);
-						}
-						else {
-							chk[n.y][n.x][n.y1][n.x1][0] = 1;
-							q.push(n);
-						}
-					}
+			for (int dir = 4; dir < 8; dir++) {
+				//xy축 시계//
+				if (dir == 4 && safe({ c.y + 1 ,c.x + 1,0,0 }) && input[c.y + 1][c.x + 1] == 0 && safe({ c.y + 1 ,c.x,0,0 }) && input[c.y + 1][c.x] == 0
+					&& chk[c.y][c.x][1] == 0) {
+					chk[c.y][c.x][1] = 1;
+					q.push({ c.y,c.x,1,c.cnt + 1 });
+				}
+				//xy축 반시계//
+				if (dir == 5 && safe({ c.y - 1 ,c.x ,0,0 }) && input[c.y - 1][c.x] == 0 && safe({ c.y -1 ,c.x + 1,0,0 }) && input[c.y-1][c.x + 1] == 0
+					&& chk[c.y - 1][c.x][1] == 0) {
+					chk[c.y - 1][c.x][1] = 1;
+					q.push({ c.y - 1,c.x,1,c.cnt + 1 });
+				}
+				//다른축 시계//
+				if (dir == 6 && safe({ c.y - 1 ,c.x ,0,0 }) && input[c.y - 1][c.x] == 0 && safe({ c.y -1 ,c.x +1,0,0 }) && input[c.y -1][c.x +1] == 0
+					&& chk[c.y -1][c.x + 1][1] == 0) {
+					chk[c.y -1][c.x + 1][1] = 1;
+					q.push({ c.y -1,c.x + 1,1,c.cnt + 1 });
+				}
+				//다른축 반시계//
+				if (dir == 7 && safe({ c.y + 1 ,c.x ,0,0 }) && input[c.y + 1][c.x] == 0 && safe({ c.y + 1 ,c.x +1,0,0 }) && input[c.y +1][c.x +1] == 0
+					&& chk[c.y][c.x + 1][1] == 0) {
+					chk[c.y][c.x + 1][1] = 1;
+					q.push({ c.y ,c.x + 1,1,c.cnt + 1 });
+				}
+			}
+		}
+		//상하좌우 이동
+		//수직인 경우 대각선 이동
+		else if (c.dir == 1) {
+			for (int dir = 0; dir < 4; dir++) {
+				//상//
+				if (dir == 0 && safe({ c.y + dy[dir] ,c.x + dx[dir],0,0 }) && input[c.y + dy[dir]][c.x + dx[dir]] == 0
+					&& chk[c.y + dy[dir]][c.x + dx[dir]][1] == 0) {
+					chk[c.y + dy[dir]][c.x + dx[dir]][1] = 1;
+					q.push({ c.y + dy[dir],c.x + dx[dir],1,c.cnt + 1 });
+				}
+				//하//
+				if (dir == 1 && safe({ c.y + 1 + dy[dir] ,c.x + dx[dir],0,0 }) && input[c.y + 1 + dy[dir]][c.x + dx[dir]] == 0
+					&& chk[c.y + dy[dir]][c.x + dx[dir]][1] == 0) {
+					chk[c.y + dy[dir]][c.x + dx[dir]][1] = 1;
+					q.push({ c.y + dy[dir],c.x + dx[dir],1,c.cnt + 1 });
+				}
+				//좌//
+				if (dir == 2 && safe({ c.y ,c.x-1,0,0 }) && input[c.y][c.x -1] == 0 && safe({ c.y + 1 ,c.x-1,0,0 }) && input[c.y + 1][c.x-1] == 0
+					&& chk[c.y][c.x-1][1] == 0) {
+					chk[c.y][c.x-1][1] = 1;
+					q.push({ c.y,c.x-1,1,c.cnt + 1 });
+				}
+				//우//
+				if (dir == 1 && safe({ c.y,c.x + 1 ,0,0 }) && input[c.y ][c.x + 1] == 0 && safe({ c.y + 1  ,c.x + 1,0,0 }) && input[c.y + 1 ][c.x + 1] == 0
+					&& chk[c.y][c.x + 1][1] == 0) {
+					chk[c.y][c.x + 1][1] = 1;
+					q.push({ c.y,c.x+1,1,c.cnt + 1 });
+				}
+			}
+			for (int dir = 8; dir < 12; dir++) {
+				//xy축 시계//
+				if (dir == 8 && safe({ c.y  ,c.x - 1,0,0 }) && input[c.y][c.x - 1] == 0 && safe({ c.y + 1,c.x - 1,0,0 }) && input[c.y + 1][c.x - 1] == 0
+					&& chk[c.y][c.x - 1][0] == 0) {
+					chk[c.y][c.x - 1][0] = 1;
+					q.push({ c.y,c.x - 1,0,c.cnt + 1 });
+				}
+				//xy축 반시계//
+
+				if (dir == 9 && safe({ c.y ,c.x + 1,0,0 }) && input[c.y][c.x + 1] == 0 && safe({ c.y + 1 ,c.x + 1 ,0,0 }) && input[c.y + 1][c.x + 1] == 0
+					&& chk[c.y][c.x][0] == 0) {
+					chk[c.y][c.x][0] = 1;
+					q.push({ c.y,c.x,0,c.cnt + 1 });
+				}
+				//다른축 시계//
+				if (dir == 10 && safe({ c.y,c.x + 1 ,0,0 }) && input[c.y][c.x + 1] == 0 && safe({ c.y + 1 ,c.x + 1,0,0 }) && input[c.y + 1][c.x + 1] == 0
+					&& chk[c.y + 1][c.x][0] == 0) {
+					chk[c.y + 1][c.x][0] = 1;
+					q.push({ c.y + 1,c.x,0,c.cnt + 1 });
+				}
+				//다른축 반시계//
+				if (dir == 11 && safe({ c.y ,c.x - 1 ,0,0 }) && input[c.y][c.x - 1] == 0 && safe({ c.y + 1 ,c.x - 1,0,0 }) && input[c.y + 1][c.x - 1] == 0
+					chk[c.y + 1][c.x - 1][0] = 1;
+					q.push({ c.y + 1 ,c.x - 1,0,c.cnt + 1 });
 				}
 			}
 		}

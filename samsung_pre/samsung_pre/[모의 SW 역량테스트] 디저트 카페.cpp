@@ -14,7 +14,7 @@ bool safe(int y, int x) {
 	else return false;
 }
 bool chk(int rotY,int rotX,int sy,int sx) {
-	int numFood[101] = { 0, };// 음식 중복체크
+	int numFood[101] = { 0, };// 음식 중복체크//
 	cnt = 0;//먹은 디저트수
 	int y = sy; int x = sx;
 	for (int dir = 0; dir < 4; dir++) {

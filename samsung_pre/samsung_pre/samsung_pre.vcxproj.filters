@@ -33,7 +33,7 @@
     <ClCompile Include="백준 17780 새로운 게임.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="[모의 SW 역량테스트] 벽돌 깨기.cpp">
+    <ClCompile Include="SW Expert 아카데미 8888 시험.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="[모의 SW 역량테스트] 디저트 카페.cpp">

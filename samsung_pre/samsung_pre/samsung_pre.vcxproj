@@ -151,6 +151,7 @@
     <ClCompile Include="[모의 SW 역량테스트] 보호 필름.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="[모의 SW 역량테스트] 원자 소멸 시뮬레이션.cpp" />
     <ClCompile Include="백준 17779 게리맨더링2.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>

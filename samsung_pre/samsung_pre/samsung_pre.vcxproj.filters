@@ -39,5 +39,11 @@
     <ClCompile Include="[모의 SW 역량테스트] 디저트 카페.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="[모의 SW 역량테스트] 홈 방범 서비스.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="[모의 SW 역량테스트] 무선 충전.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -54,5 +54,11 @@
     <ClCompile Include="2667 단지번호 붙이기.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="10974 모든순열.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="11559 Puyo.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

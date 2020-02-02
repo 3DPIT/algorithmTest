@@ -119,7 +119,7 @@ struct SumDfs {
 							for (int i = 0; i < 8; i++) {
 								if (G[i].size() == 0) continue;
 								for (int j = 0; j < G[i].size(); i++) {
-									G[i][j] = CG[i][j];
+									G[i][j] = CG[i][j];//
 								}
 							}
 							Road = copyRoad;

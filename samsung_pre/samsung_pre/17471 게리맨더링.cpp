@@ -33,7 +33,7 @@ void dfs(int sum,int idx) {
 		if (cnt == 2) {
 			//cout << sum << " " << sumMax - sum << endl;
 			if (abs((sumMax - sum) - sum) < Min) {
-				Min = abs((sumMax - sum) - sum);// 최소값
+				Min = abs((sumMax - sum) - sum);// 최소값//
 			}
 		}
 		return;

@@ -78,5 +78,14 @@
     <ClCompile Include="14889 스타트와 링크.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="해쉬.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="17837 새로운 게임 2.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="17779 게리맨더링2.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -103,6 +103,7 @@ void fourArea(int y, int x, int d1, int d2) {
 			if (chk[y][x] == 0) {
 
 			}
+
 		}
 	}
 }

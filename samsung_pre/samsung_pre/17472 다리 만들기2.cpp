@@ -1,114 +1,176 @@
-#include <stdio.h>
-#include <vector>
-#include <algorithm>
+#include<stdio.h>
+#include<iostream>
+#include<vector>
+#include<string.h>
+#include<algorithm>
 using namespace std;
-int MAX, T, N, sec = 0;
-int result[10004];
-typedef struct ctr
-{
-	int idx, time;
-}ctr;
-vector <ctr>L;
-vector <ctr>R;
-
-bool cmp(ctr a, ctr b)
-{
-	return a.idx < b.idx;
-
+#define MAP_S 11
+int N, M, numIsland,map[MAP_S][MAP_S];
+int num[7] = { 0, };
+int chk[MAP_S][MAP_S];
+int dy[] = { 0,1,0,-1 };
+int dx[] = { 1,0,-1,0 };
+vector<int>D;
+vector<int>G[7];
+int Min = 0x7fffffff;
+struct Data {
+	int y, x, cnt;
+};
+bool cmp(Data a, Data b) {
+	if (a.y == b.y)return a.x < b.x;
+	return a.y < b.y;
 }
-int main(void)
-{
-	scanf("%d %d %d", &MAX, &T, &N);
-	for (int i = 1; i <= N; i++)
-	{
-		int t;
-		char d[7];
-		scanf("%d %s", &t, &d);
-		if (d[0] == 'l')L.push_back({ i, t });
-		else R.push_back({ i, t });
+vector<Data>v;
+struct makeIsland {
+	makeIsland() {// 초기화 진행
+		scanf("%d %d", &N, &M);
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < M; j++) {
+				scanf("%d", &map[i][j]);
+			}
+		}
 	}
-	sort(L.begin(), L.end(), cmp);
-	sort(R.begin(), R.end(), cmp);
+	void dfs(int idx) {
+		for (int i = 0; i < G[idx].size(); i++) {
+			if (num[G[idx][i]] ==0 ) {
+				num[G[idx][i]] = 1;
+				dfs(G[idx][i]);
+			}
+		}
+	}
+	void dfs1(int idx, int sum) {
+		if (idx == v.size()){
+			for (int i = 0; i <D.size() ; i++) {
+				cout << D[i] << " ";
+			}
+			cout << endl;
+			for (int i = 0; i < 7; i++) {
+				G[i].clear();
+			}//그래프 초기화
+			sum = 0;
+			for (int i = 0; i < D.size(); i++) {
+				G[v[D[i]].y].push_back(v[D[i]].x);//그래프 연결
+				sum += v[D[i]].cnt;
+			}
 
-	int na = 0; //왼쪽
+			if (connectG()) {
 
-	while (L.size() + R.size() != 0)//빈게아니면
-	{
-		int fal = 0;
-		if (na == 0) //L
-		{
-			for (int i = 0; i < MAX; i++)
-			{
-				if (L.size() > 0)
-				{
-					if (L[i].time <= sec)
-					{
-						result[L[i].idx] = sec + T;
-						L.erase(L.begin() + i);
-						i--;
-						fal = 1;
-					}
-					else break;
+				if (Min > sum)Min = sum;
+			}
+			return;
+		}
+		D.push_back(idx);
+		dfs1(idx + 1, sum + v[idx].cnt);
+
+		D.pop_back();
+		dfs1(idx + 1, sum);
+
+	}
+	void dfs(int y, int x) {//섬 번호 매기는 dfs
+		for (int dir = 0; dir < 4; dir++) {
+			int ny = y + dy[dir];
+			int nx = x + dx[dir];
+			if (map[ny][nx] == 1 && chk[ny][nx] == 0) {
+				chk[ny][nx] = numIsland;
+				map[ny][nx] = numIsland;
+				dfs(ny, nx);
+			}
+		}
+	}
+	bool safe(int y, int x) {
+		return 0 <= y && y < N && 0 <= x && x < M;
+	}
+	bool connectG() {
+		memset(num, 0, sizeof(num));
+		int c = 0;
+		for (int i = 1; i <= numIsland; i++) {
+			if (num[i] == 0) {
+				num[i] = 1;
+				c++;
+				dfs(i);
+			}
+		}
+		if (c == 1)return true;
+		else return false;
+	}
+	
+	void make(int y, int x,int d,int cnt) {
+		int num = map[y][x];
+		int ny = y + dy[d];
+		int nx = x + dx[d];
+		while (1) {
+			if (!safe(ny, nx)) return ;
+			else if (map[ny][nx] == 0) {
+				cnt++;
+			}
+			else if (map[ny][nx] == num)return;
+			else if (map[ny][nx] != num ) {
+				if (map[ny][nx] != 0 && cnt >= 2) {
+					v.push_back({ num,map[ny][nx],cnt });
+					v.push_back({ map[ny][nx],num,cnt });
 				}
-				else break;
+				else {
+					return;
+				}
+				return;
 			}
-			if (fal == 1) //한명이라도 태웠다
-			{
-				na = 1;
-				sec += T;
+			ny += dy[d];
+			nx += dx[d];
+		}
+	}
+	void numbering() {//섬에 번호 매기기
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < M; j++) {
+				if (map[i][j] == 1 && chk[i][j] == 0) {
+					numIsland++;
+					map[i][j] = numIsland;
+					chk[i][j] = numIsland;
+					dfs(i, j);
+				}
 			}
-			else //한명도 못태웠다
-			{
-				//반대편에 사람이 왔으면 가야한다.
-				if (R.size() > 0)
-				{
-					if (R[0].time <= sec)
-					{
-						fal = 1;
-						sec += T;
-						na = 1;//반대편으로 이동 
+		}
+	}
+	void connectIsland() {
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < M; j++) {
+				if (map[i][j] != 0) {
+					for (int dir = 0; dir < 4; dir++) {
+						make(i, j, dir, 0);
 					}
 				}
 			}
 		}
-		else //R
-		{
-			for (int i = 0; i < MAX; i++)
-			{
-				if (R.size() > 0)
-				{
-					if (R[i].time <= sec)
-					{
-						result[R[i].idx] = sec + T;
-						R.erase(R.begin() + i);
-						i--;
-						fal = 1;
-					}
-					else break;
+	}
+
+	void deleteDouble() {
+
+		sort(v.begin(), v.end(),cmp);// 순서 정렬
+		for (int i = 0; i < v.size()-1; i++) {
+			if (v.size() == 0)return;
+			Data a = v[i];
+			int cnt = a.cnt;
+			for (int j = i+1; j < v.size(); j++) {
+				if (v.size() == 0)return;
+				Data b = v[j];
+				if (a.y == b.y&&a.x == b.x) {
+					if (cnt > b.cnt)cnt = b.cnt;
+					v.erase(v.begin() + j);
+					j--;
 				}
-				else break;
-			}
-			if (fal == 1) //한명이라도 태웠다
-			{
-				na = 0;
-				sec += T;
-			}
-			else //한명도 못태웠다
-			{
-				//반대편에 사람이 왔으면 가야한다.
-				if (L.size() > 0)
-				{
-					if (L[0].time <= sec)
-					{
-						fal = 1;
-						sec += T;
-						na = 0;//반대편으로 이동 
-					}
+				else {
+					v[i].cnt = cnt;
+					break;
 				}
 			}
 		}
-		if (fal == 0)sec++;
 	}
-	for (int i = 1; i <= N; i++)printf("%d\n", result[i]);
-
+}connect;
+int main(void) {
+	connect.numbering();
+	connect.connectIsland();
+	connect.deleteDouble();
+	connect.dfs1(0,0);
+	if (Min == 0x7fffffff)cout << -1 << endl;
+	else cout << Min << endl;
+	return 0;
 }

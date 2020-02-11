@@ -87,5 +87,11 @@
     <ClCompile Include="16918 봄버맨.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="17822 원판돌리기.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="2146 다리만들기.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

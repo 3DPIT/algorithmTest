@@ -84,13 +84,10 @@ struct Lab {
 }lab;
 int main(void) {
 	lab.dfs(0, 0);
-
 	if (Min == 0x7fffffff)cout << -1 << endl;
 	else {
+		if (Min == 0x80000000)Min = 0;
 		if (Min != 0)Min--;
-
-		if (Min == 2147483647)Min = 0;
-
 		cout << Min << endl;
 	}
 	return 0;

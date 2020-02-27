@@ -111,5 +111,14 @@
     <ClCompile Include="17143 연구소3.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="1486 장훈이의 높은 선반.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="1125 암호생성기.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="1258 행렬찾기.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

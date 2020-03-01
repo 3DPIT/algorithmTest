@@ -57,7 +57,7 @@ struct Bomb {
 				Data n;
 				n.y = c.y + dy[dir];
 				n.x = c.x + dx[dir];
-				if (safe(n.y,n.x)){
+				if (safe(n.y,90., n.x)){
 					imap[n.y][n.x] = 0;
 				}
 			}

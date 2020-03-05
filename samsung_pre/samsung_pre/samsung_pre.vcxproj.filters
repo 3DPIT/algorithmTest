@@ -147,5 +147,11 @@
     <ClCompile Include="4012. [모의 SW 역량테스트] 요리사.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="1953. [모의 SW 역량테스트] 탈주범 검거.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="17471게리맨더링.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

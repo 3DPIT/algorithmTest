@@ -153,5 +153,14 @@
     <ClCompile Include="17471게리맨더링.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="9944NxM 보드 완주하기.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="17244 아맞다우산.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="2606 바이러스.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

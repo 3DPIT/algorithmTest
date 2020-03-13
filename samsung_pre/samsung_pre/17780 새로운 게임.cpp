@@ -1,151 +1,118 @@
 #include<stdio.h>
-#include<iostream>
-#include<string.h>
 #include<vector>
 using namespace std;
-#define S 13 
+#define NS 13
+#define KS 11
+int input[NS][NS];
 int N, K;
-int dy[] = { 0,0,0,-1,1 };
+int dy[] = { 0,0,0,-1,1 };//우,좌,상,하
 int dx[] = { 0,1,-1,0,0 };
-int ret;
-int flag = 0;
 struct Data {
-	int y, x, dir, num, color;
+	int y, x, dir, num;
 };
-int iinput[S][S];
-vector<Data>input[S][S];
-vector<Data>v[11];
+vector<Data>horse[KS];
+vector<Data>iinput[NS][NS];
+int Time = 0;
 struct NewGame {
 	NewGame() {
-		init();
 		scanf("%d %d", &N, &K);
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < N; j++) {
-				scanf("%d", &iinput[i][j]);
+		for (int i = 1; i <= N; i++) {
+			for (int j = 1; j <= N; j++) {
+				scanf("%d", &input[i][j]);
 			}
 		}
-
-		for (int k = 1; k <= K; k++) {
+		for (int i = 1; i <= K; i++) {
 			int y, x, dir;
 			scanf("%d %d %d", &y, &x, &dir);
-			v[k].push_back({ y - 1,x - 1,dir,k });
-			input[y - 1][x - 1].push_back({ y - 1,x - 1,dir,k,0 });
+			horse[i].push_back({ y,x,dir });
+			iinput[y][x].push_back({ 0,0,dir,i });
 		}
-		while (flag == 0) {
-			play();
-		}
-
-		printf("%d\n", ret);
-	}
-	void init() {
-		N = K = ret = 0;
-		memset(input, 0, sizeof(input));
-		for (int i = 0; i < 11; i++) {
-			v[i].clear();
-		}
+		play();
 	}
 	void play() {
-		ret++;
-		for (int i = 1; i <= K; i++) {
-			if (input[v[i].front().y][v[i].front().x].front().num == v[i].front().num) {
-				Data c = v[i].front();
-				int ny = c.y + dy[c.dir];
-				int nx = c.x + dx[c.dir];
-				//resultChk();
-				if (!safe(ny, nx)) {
-					if (v[input[c.y][c.x].front().num].front().dir == 1) {
-						v[input[c.y][c.x].front().num].front().dir = 2;
-					}
-					else if (v[input[c.y][c.x].front().num].front().dir == 2) {
-						v[input[c.y][c.x].front().num].front().dir = 1;
-					}
-					else if (v[input[c.y][c.x].front().num].front().dir == 3) {
-						v[input[c.y][c.x].front().num].front().dir = 4;
-					}
-					else if (v[input[c.y][c.x].front().num].front().dir == 4) {
-						v[input[c.y][c.x].front().num].front().dir = 3;
-					}
-					c = v[i].front();
-					ny = c.y + dy[c.dir];
-					nx = c.x + dx[c.dir];
+		while (1) {
+			int cnt = 0;//턴 확인 용도
+			Time++;
+			for (int i = 1; i <= K; i++) {
+				Data c = horse[i].front();
+				if (iinput[c.y][c.x][0].num != i)continue;// 하단이 아니면 
+				int dir = iinput[c.y][c.x][0].dir;
+				Data n;
+				n.y = c.y + dy[dir];
+				n.x = c.x + dx[dir];
+				//파란공간이거나 벗어나는경우 
+				if (input[n.y][n.x] == 2 || !safe(n.y, n.x)) {
+					Blue(c, n);
 				}
-				else if (iinput[ny][nx] == 0) {//흰
-					white(c.y, c.x, ny, nx);
+				//하얀공간인경우 
+				else if (input[n.y][n.x] == 0) {
+					White(c, n);
 				}
-				else if (iinput[ny][nx] == 1) {//빨
-					red(c.y, c.x, ny, nx);
+				//빨간공간인경우//
+				else if (input[n.y][n.x] == 1) {
+					Red(c, n);
 				}
-				else if (iinput[ny][nx] == 2 ) {//파
-					blue(c.y, c.x, ny, nx);
+
+			}
+			//탈출 조건
+			for (int i = 1; i <= N; i++) {
+				for (int j = 1; j <= N; j++) {
+					if (iinput[i][j].size() >= 4) {
+						printf("%d\n", Time);
+						return;
+					}
 				}
 			}
+			if (Time == 1001) {
+				printf("-1\n");
+				return;
+			}
 		}
-
-		if (ret == 1001) {
-			flag = 1;
-			ret = -1; return;
+	}
+	void White(Data c, Data n) {
+		while (!iinput[c.y][c.x].empty()) {
+			Data h = iinput[c.y][c.x].front(); iinput[c.y][c.x].erase(iinput[c.y][c.x].begin());
+			iinput[n.y][n.x].push_back({ n.y,n.x,h.dir,h.num });
+			horse[h.num].front().y = n.y;
+			horse[h.num].front().x = n.x;
+			horse[h.num].front().dir = h.dir;
+			horse[h.num].front().num = h.num;
 		}
-		resultChk();
-		if (flag == 1) {
+	}
+	void Red(Data c, Data n) {
+		while (!iinput[c.y][c.x].empty()) {
+			Data h = iinput[c.y][c.x].back(); iinput[c.y][c.x].pop_back();
+			iinput[n.y][n.x].push_back({ n.y,n.x,h.dir,h.num });
+			horse[h.num].front().y = n.y;
+			horse[h.num].front().x = n.x;
+			horse[h.num].front().dir = h.dir;
+			horse[h.num].front().num = h.num;
+		}
+	}
+	void Blue(Data c, Data n) {
+		if (iinput[c.y][c.x].front().dir == 1)iinput[c.y][c.x].front().dir = 2;
+		else if (iinput[c.y][c.x].front().dir == 2)iinput[c.y][c.x].front().dir = 1;
+		else if (iinput[c.y][c.x].front().dir == 3)iinput[c.y][c.x].front().dir = 4;
+		else if (iinput[c.y][c.x].front().dir == 4)iinput[c.y][c.x].front().dir = 3;
+		n.y = c.y + dy[iinput[c.y][c.x].front().dir];
+		n.x = c.x + dx[iinput[c.y][c.x].front().dir];
+		if (input[n.y][n.x] == 2 ||!safe(n.y,n.x)) {
 			return;
 		}
-	}
-	void resultChk() {
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < N; j++) {
-				if (input[i][j].size() >= 4) {
-					flag = 1;
-
-					return;
-				}
-			}
+		else if (input[n.y][n.x] == 0) {
+			White(c, n);
+		}
+		else if (input[n.y][n.x] == 1) {
+			Red(c, n);
 		}
 	}
-	void white(int cy, int cx, int y, int x) {
-		for (int i = 0; i < input[cy][cx].size(); i++) {
-			Data c = input[cy][cx][i];
-			v[c.num].clear();
-			v[c.num].push_back({ y,x,c.dir,c.num,c.color });
-			input[y][x].push_back({ y,x,c.dir,c.num,c.color });
-		}
-		while (!input[cy][cx].empty())input[cy][cx].pop_back();
-	}
-	void red(int cy, int cx, int y, int x) {
-		for (int i = input[cy][cx].size()-1; i>=0; i--) {
-			Data c = input[cy][cx][i];
-			v[c.num].clear();
-			v[c.num].push_back({ y,x,c.dir,c.num,c.color });
-			input[y][x].push_back({ y,x,c.dir,c.num,c.color });
-		}
-		while (!input[cy][cx].empty())input[cy][cx].pop_back();
-		
-	}
-	void blue(int cy, int cx, int y, int x) {
-		if (iinput[y][x] == 3 || !safe(y, x)) {
-			if (v[input[cy][cx].front().num].front().dir == 1) {
-				v[input[cy][cx].front().num].front().dir = 2;
-			}
-			else if (v[input[cy][cx].front().num].front().dir == 2) {
-				v[input[cy][cx].front().num].front().dir = 1;
-			}
-			else if (v[input[cy][cx].front().num].front().dir == 3) {
-				v[input[cy][cx].front().num].front().dir = 4;
-			}
-			else if (v[input[cy][cx].front().num].front().dir == 4) {
-				v[input[cy][cx].front().num].front().dir = 3;
-			}
-		}
-		if (iinput[y][x] == 1) {
-			white(cy, cx, cy + dy[input[y][x].front().dir], cx + dx[input[y][x].front().dir]);
-		}
-		if (iinput[y][x] == 2) {
-			red(cy, cx, cy + dy[input[y][x].front().dir], cx + dx[input[y][x].front().dir]);
-		}
-	}
+	
 	bool safe(int y, int x) {
-		return 0 <= y && y < N && 0 <= x && x < N;
+		return 1 <= y && y <= N && 1 <= x && x <= N;
 	}
+	
 }NewGame;
-int main(void) {
 
+int main(void) {
+	return 0;
 }

@@ -29,7 +29,7 @@ struct twoArrSum {
 					scanf("%d", &map[y][x]);
 				}
 			}
-			printf("#%d %d\n", t, play());
+			printf("%d\n", play());
 		}
 	}
 	void init() {

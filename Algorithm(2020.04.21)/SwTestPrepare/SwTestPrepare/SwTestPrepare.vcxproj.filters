@@ -42,5 +42,17 @@
     <ClCompile Include="14501 퇴사(프린트버젼).cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="12100 2048.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="12100 2048(프린트).cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="3190 뱀.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="3190 뱀(프린트).cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

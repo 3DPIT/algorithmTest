@@ -54,5 +54,11 @@
     <ClCompile Include="3190 뱀(프린트).cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="14890 경사로.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="14890 경사로(프린트).cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

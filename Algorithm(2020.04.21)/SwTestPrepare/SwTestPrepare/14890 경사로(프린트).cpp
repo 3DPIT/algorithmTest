@@ -24,26 +24,52 @@ void rotArr() {
 		}
 	}
 }
+void print(string num, int idx,int arr[NS]) {
+	cout << num << idx << endl;
+	if (idx != 100) {
+		for (int i = 0; i < N; i++) {
+			cout << arr[i] << " ";
+		}
+		cout << endl;
+	}
+	if (idx == 100) {
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < N; j++){
+				cout << map[i][j];
+			}
+			cout << endl;
+		}
+	}
+	
+}
 void makeLoad() {
-	for (int i = 0; i < N-1; i++) {
+	for (int i = 0; i < N; i++) {
 		int j = 0;
 		int loadChk[NS] = { 0, };
 		for (j = 0; j < N-1; j++) {
 			if (map[i][j] - map[i][j + 1] == 1) {
 				int cLen = 1;
-				for (int cj = j +1 ; cj <= j + L; cj++) {
+				for (int cj = j +1 ; cj <= j + L-1; cj++) {
 					if (map[i][cj] == map[i][cj+1]&&loadChk[cj]==0&&loadChk[cj+1]==0) {
 						cLen++;
 					}
 					else break;
 				}
 				if (cLen == L) {
-					for (int cj = j + 1; cj <= j+1 + L; cj++) {
+					int flag = 0;
+					for (int cj = j + 1; cj <= j+ L; cj++) {
 						//다리 건설 체크
+						if(loadChk[cj]==0)
 						loadChk[cj] = 1;
+						else {
+							flag = 1;
+						}
 					}
-					j += L;
-					j--;
+					if (flag == 1)break;
+					if (L != 1) {
+						j += L;
+						j--;
+					}
 				}
 				else break;
 			}// 차이가 1인경우//내리막 설치
@@ -57,15 +83,21 @@ void makeLoad() {
 						loadChk[cj]==0&&loadChk[cj-1]==0) cLen++;
 					else break;
 				}
+
 				if (cLen == L) {
+					int flag = 0;
 					for (int cj = j; cj >= j + 1 - L && cj >= 0; cj--) {
-						loadChk[cj] = 1;
+						if(loadChk[cj]==0)loadChk[cj] = 1;
+						else flag = 1;
 					}
+					if (flag)break;
 				}
 				else break;
 			}// 차이가 -1인경우//오르막 설치
+			else break;
 		}
 		if (j == N-1) {//도달했으면
+			print("다리건설현황", i,loadChk);
 			ret++;
 		}
 	}
@@ -83,8 +115,9 @@ int main(void) {
 		}
 		makeLoad();
 		rotArr();
+		print("맵출력", 100, map[0]);
 		makeLoad();
-		printf("#%d %d\n", ti, ret);
+;		printf("#%d %d\n", ti, ret);
 	}
 	return 0;
 }

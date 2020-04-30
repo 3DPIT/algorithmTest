@@ -27,5 +27,11 @@
     <ClCompile Include="15685 드래곤커브(프린트).cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="15684 사다리조작.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="15684 사다리조작(프린트).cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

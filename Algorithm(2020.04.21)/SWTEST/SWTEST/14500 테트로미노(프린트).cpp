@@ -4,10 +4,10 @@
 #include<string.h>
 #include<string>
 using namespace std;
-#define NS 502
-#define MS 502
+#define NS 503
+#define MS 503
 int map[NS][MS];
-int N, M,ret;
+int N, M, ret;
 int Max = 0x80000000;
 int dy[] = { 0,1,0,-1 };
 int dx[] = { 1,0,-1,0 };
@@ -37,7 +37,7 @@ void init() {
 bool safe(int y, int x) {
 	return 0 <= y && y < N && 0 <= x && x < M;
 }
-void dfs(int y, int x, int cnt,int sum) {
+void dfs(int y, int x, int cnt, int sum) {
 	if (cnt == 3) {
 		//print("dfs결과", 0);
 	//	cout << sum << endl;
@@ -47,7 +47,7 @@ void dfs(int y, int x, int cnt,int sum) {
 	for (int dir = 0; dir < 4; dir++) {
 		int ny = y + dy[dir];
 		int nx = x + dx[dir];
-		if (safe(ny, nx)&&visit[ny][nx]==0) {
+		if (safe(ny, nx) && visit[ny][nx] == 0) {
 			visit[ny][nx] = 1;
 			dfs(ny, nx, cnt + 1, sum + map[ny][nx]);
 			visit[ny][nx] = 0;
@@ -78,24 +78,24 @@ int A[4][3][3] = {
 };
 void lastMax() {
 
-		for (int i = 0; i <= N; i++) {
-			for (int j = 0; j <= M; j++) {
-				for (int k = 0; k < 4; k++) {
-					int sum = 0;
-					for (int ci = 0; ci < 3; ci++) {
-						for (int cj = 0; cj < 3; cj++) {
-							//print("아 그리기", 1);
-							cout << A[k][ci][cj];
-							if (A[k][ci][cj] == 1) {
-								
-								sum += map[i+ci][j+cj];
-							}
+	for (int i = 0; i < N; i++) {
+		for (int j = 0; j < M; j++) {
+			for (int k = 0; k < 4; k++) {
+				int sum = 0;
+				for (int ci = 0; ci < 3; ci++) {
+					for (int cj = 0; cj < 3; cj++) {
+						//print("아 그리기", 1);
+						cout << A[k][ci][cj];
+						if (A[k][ci][cj] == 1) {
+
+							sum += map[i + ci][j + cj];
 						}
-						cout << endl;
 					}
-					//cout <<"아"<< sum << endl;
 					cout << endl;
-					Max = Max < sum ? sum : Max;
+				}
+				//cout <<"아"<< sum << endl;
+				cout << endl;
+				Max = Max < sum ? sum : Max;
 			}
 		}
 
@@ -106,7 +106,7 @@ int main(void) {
 	for (int t = 1; t <= T; t++) {
 		init();
 
-		for (int i = 0; i <N; i++) {
+		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < M; j++) {
 				visit[i][j] = 1;
 				dfs(i, j, 0, map[i][j]);
@@ -115,7 +115,7 @@ int main(void) {
 		}
 		//ㅗ ㅏ ㅜ ㅓ 에대해서 맥스만
 		lastMax();
-		printf("#%d %d\n", t,Max);
+		//printf("#%d %d\n", t, Max);
 		printf("%d\n", Max);
 	}
 	return 0;

@@ -85,7 +85,7 @@ int main(void) {
 
 		cleanRoom();
 		//printf("#%d %d\n", t, Time - 2);
-		printf("%d\n", Time-1);
+		printf("%d\n", Time-2);
 	}
 
 	return 0;

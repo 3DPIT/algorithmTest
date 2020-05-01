@@ -57,5 +57,11 @@
     <ClCompile Include="14502 연구소(프린트).cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="15686 치킨배달.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="15686 치킨배달(프린트).cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

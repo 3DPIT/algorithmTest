@@ -66,8 +66,8 @@ int main(void) {
 	for (int t = 1; t <= T; t++) {
 		init();
 		dfs(0, 0);
-		printf("%d", Min);
-		printf("#%d %d", t, Min);
+		printf("%d\n", Min);
+		printf("#%d %d\n", t, Min);
 	}
 	return 0;
 }

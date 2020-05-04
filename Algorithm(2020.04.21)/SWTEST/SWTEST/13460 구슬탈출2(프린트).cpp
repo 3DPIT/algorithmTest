@@ -3,6 +3,7 @@
 #include<string.h>
 #include<string>
 #include<queue>
+#include<algorithm>
 using namespace std;
 #define NS 11
 int N, M;
@@ -126,7 +127,7 @@ void BFS() {
 	if (flag == 0)printf("-1\n");
 }
 int main(void) {
-	int T = 7;
+	int T = 1;
 	for (int t = 1; t <= T; t++) {
 		init();
 		//printf("%d %d %d %d %d %d\n", ry, rx, by, bx, hy, hx);

@@ -81,5 +81,11 @@
     <ClCompile Include="13460 구슬탈출2(프린트).cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="17779 게리맨더링2.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="17779 게리맨더링2(프린트).cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

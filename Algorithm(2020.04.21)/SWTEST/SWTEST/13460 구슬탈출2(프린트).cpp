@@ -3,6 +3,7 @@
 #include<string.h>
 #include<string>
 #include<queue>
+#include<algorithm>
 using namespace std;
 #define NS 11
 int N, M;
@@ -45,6 +46,7 @@ void init() {
 //bool safe(int y, int x) {
 //	
 //}
+int flag = 0;
 void BFS() {
 	queue<Data>q;
 	q.push({ ry,rx,by,bx,0 });
@@ -52,10 +54,12 @@ void BFS() {
 		
 		Data c = q.front(); q.pop();
 		if (c.cnt > 10) {
+			flag = 1;
 			printf("-1\n");
 			break;
 		}
 		if (c.ry == hy && c.rx == hx) {
+			flag = 1;
 			printf("%d\n", c.cnt);
 			break;
 		}
@@ -75,23 +79,29 @@ void BFS() {
 					h1 = 1;
 					break;
 				}
-				if (map[n.ry][n.rx] == '#')break;
+				if (map[n.ry][n.rx] == '#') {
+					n.ry -= dy[dir]; n.rx -= dx[dir];
+					break;
+				}
 				n.ry += dy[dir];
 				n.rx += dx[dir];
 			}
-			while (2) {//블루
+			while (1) {//블루
 				if (n.by == hy && n.bx == hx) {
 					h2 = 1;
 					break;
 				}
-				if (map[n.by][n.bx] == '#')break;
+				if (map[n.by][n.bx] == '#') {
+					n.by -= dy[dir]; n.bx -= dx[dir];
+					break;
+				}
 				n.by += dy[dir];
 				n.bx += dx[dir];
 			}
 			if (h1&&h2) {//둘다 빠진경우
 				continue;
 			}
-			if (h1&&h2 == 0) {//빨강만 빠진경우
+	
 				if (n.ry == n.by&&n.rx == n.bx) {
 					int dr = abs(n.ry - c.ry) + abs(n.rx - c.rx);
 					int db = abs(n.by - c.by) + abs(n.bx - c.bx);
@@ -104,7 +114,7 @@ void BFS() {
 						n.bx -= dx[dir];
 					}
 			}
-		}
+	
 			if (h1 == 0 && h2) {//파랑만 빠진경우
 				continue;
 			}
@@ -114,16 +124,15 @@ void BFS() {
 			}
 		}
 	}
+	if (flag == 0)printf("-1\n");
 }
 int main(void) {
-	int T = 7;
+	int T = 1;
 	for (int t = 1; t <= T; t++) {
 		init();
 		//printf("%d %d %d %d %d %d\n", ry, rx, by, bx, hy, hx);
 		
 		BFS();
-		printf("#%d %d\n", t, ret);
-		printf("%d\n", ret);
 	}
 	return 0;
 }

@@ -47,7 +47,7 @@ void dfs(int y, int x, int d,int sum) {
 	}
 }
 int main(void) {
-	int T = 4;
+	int T = 1;
 	for (int t = 1; t <= T; t++) {
 		init();
 		dfs(1, 1, 0, 0);

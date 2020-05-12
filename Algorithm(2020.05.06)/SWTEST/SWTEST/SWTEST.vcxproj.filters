@@ -63,5 +63,17 @@
     <ClCompile Include="18290 NM과 K(1)(프린트).cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="15653 구슬탈출4.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="15653 구슬탈출4(프린트).cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="90905 1,2,3더하기.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="90905 1,2,3더하기(프린트).cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -21,7 +21,7 @@ void init() {
 		map.push_back(a);
 	}
 }
-void dfs(int idx,int cn, int sum) {
+void dfs(int cn, int sum) {
 	if (cn == 1) {//에너지 다모은후
 		if (ret < sum)ret = sum;
 		return;
@@ -31,7 +31,7 @@ void dfs(int idx,int cn, int sum) {
 		cmap = map;
 			int s = (map[i - 1] * map[i + 1]);
 			map.erase(map.begin() + i);
-			dfs(i, cn - 1, sum + s);
+			dfs(cn- 1, sum + s);
 			map.insert(map.begin() + i, cmap[i]);
 		map = cmap;
 
@@ -44,7 +44,7 @@ int main(void) {
 	//scanf("%d", &T);
 	for (int t = 1; t <= T; t++) {
 		init();
-		dfs(1,N-1, 0);
+		dfs(N-1, 0);
 
 		//printf("#%d %d\n", t, ret);
 		printf("%d\n", ret);

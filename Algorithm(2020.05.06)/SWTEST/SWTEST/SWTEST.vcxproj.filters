@@ -15,19 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="17143 낚시왕.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="17143 낚시왕(프린트).cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="2-N 순열 구하기.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="17837 새로운게임2.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="17837 새로운게임2(프린트).cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="당구.cpp">
@@ -46,9 +37,6 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="카카오3.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="17825 주사위 윷놀이.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="카카오4.cpp">
@@ -75,19 +63,43 @@
     <ClCompile Include="90905 1,2,3더하기(프린트).cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="16198 에너지 모으기.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="2210 숫자판 점프.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="2210 숫자판 점프(프린트).cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="16946 벽 부수고 이동하기4.cpp">
+    <ClCompile Include="4991 로봇 청소기.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="4991 로봇 청소기(프린트).cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="17837 새로운게임2(프린트).cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="16198 에너지 모으기.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="16946 벽 부수고 이동하기4(프린트).cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="16946 벽 부수고 이동하기4.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="16987 계란으로 계란치기(프린트).cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="16987 계란으로 계란치기.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="17143 낚시왕(프린트).cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="17143 낚시왕.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="17825 주사위 윷놀이.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

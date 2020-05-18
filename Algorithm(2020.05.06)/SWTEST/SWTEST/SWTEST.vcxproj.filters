@@ -102,5 +102,17 @@
     <ClCompile Include="17825 주사위 윷놀이.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="17071 숨바꼭질5(프린트).cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="17071 숨바꼭질5.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="17090 미로탈출하기.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="16957 체스판 위의 공.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,110 +1,137 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 #include<iostream>
 #include<string.h>
 #include<string>
 #include<vector>
 #include<queue>
+#include<algorithm>
 using namespace std;
 #define S 21
-int inp[S][S];
-int dy[] = { 0,1,0,-1 };
-int dx[] = { 1,0,-1,0 };
-int N, M;
-int visit1[S][S];
-bool safe(int y, int x) {
-	return 0 <= y && y < N && 0 <= x && x < M;
-}
-void dfs1(int y, int x, int cnt) {
-	for (int dir = 0; dir < 4; dir++) {
-		int ny = y + dy[dir];
-		int nx = x + dx[dir];
-		if (safe(ny, nx) && inp[ny][nx] != 'x'&& visit1[ny][nx] == 0) {
-			visit1[ny][nx] = cnt;
-			dfs1(ny, nx, cnt);
-		}
-	}
-}
+int N, M,sy,sx;
+int ret = 0x7fffffff;
+char input[S][S];
 struct Data {
 	int y, x, cnt;
 };
+vector<Data>garbage;
+void init() {
+	N = M=sy=sx=0;
+	ret = 0x7fffffff;
+	garbage.clear();
+	memset(input, 0, sizeof(input));
+}
 
-int main(void) {
-	while (1) {
-		scanf("%d %d", &M, &N);
-		if (N == 0 && M == 0)break;
-		int sy = 0, sx = 0;
-		vector<Data>v;
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < M; j++) {
-				scanf(" %1c", &inp[i][j]);
-				if (inp[i][j] == 'o') {
-					sy = i; sx = j;
-				}
-				if (inp[i][j] == '*') {
-					v.push_back({ i,j,0 });
-				}
+void init_input() {
+	for (int i = 0; i < N; i++) {
+		for (int j = 0; j < M; j++) {
+			scanf(" %1c", &input[i][j]);
+			if (input[i][j] == 'o') {//청소기 위치
+				sy = i; sx = j;
+				input[i][j] = '.';
 			}
-		}
-		int cnt = 0;
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < M; j++) {
-				if (visit1[i][j] == 0) {
-					visit1[i][j] = 1;
-					cnt++;
-					visit1[i][j] = cnt;
-					dfs1(i, j, cnt)
-						;
-				}
+			if (input[i][j] == '*') {//쓰레기 위치
+				garbage.push_back({ i,j });
+				input[i][j] = '.';
 			}
-		}
-		int chka = visit1[sy][sx];
-		int flag1 = 0;
-		for (int i = 0; i < v.size(); i++) {
-			int y = v[i].y;
-			int x = v[i].x;
-			if (visit1[y][x] != chka) {
-				flag1 = 1;
-			}
-		}
-		memset(visit1, 0, sizeof(visit1));
-		if (flag1) {
-			cout << -1 << endl;
-		}
-		else {
-			int c1 = 0;
-			int sum = 0;
-			vector<int>v1;
-			while (1) {
-				queue<Data>q;
-				q.push({ sy,sx,0 });
-				int visit[S][S] = { 0, };
-				while (!q.empty()) {
-					Data c = q.front(); q.pop();
-
-					if (inp[c.y][c.x] == '*') {
-						sy = c.y; sx = c.x;
-						inp[c.y][c.x] = '.';
-						v1.push_back(c.cnt);
-						sum += c.cnt;
-						c1++;
-						break;
-					}
-					for (int dir = 0; dir < 4; dir++) {
-						Data n;
-						n.y = c.y + dy[dir];
-						n.x = c.x + dx[dir];
-						n.cnt = c.cnt + 1;
-						if (safe(n.y, n.x) && inp[n.y][n.x] != 'x'&&visit[n.y][n.x] == 0) {
-							visit[n.y][n.x] = 1;
-							q.push(n);
-						}
-					}
-				}
-				if (c1 == v.size())break;
-			}
-
-			cout << sum << endl;
 		}
 	}
+}
+int G[S][S];
+int dy[] = { 0,1,0,-1 };
+int dx[] = { 1,0,-1,0 };
+
+bool safe(int y, int x){
+return 0 <= y && y < N && 0 <= x && x < M;
+}
+int BFS(){
+	int cchk = 0;
+	vector<Data>v;
+	v.push_back({ sy, sx,0 });
+	for (int i = 0; i < garbage.size(); i++) {
+		v.push_back({garbage[i].y, garbage[i].x, 0});
+	}
+	for (int i = 0; i < v.size() - 1; i++) {
+		for (int j = i + 1; j < v.size(); j++) {
+		//	cout << i << j << endl;
+			queue<Data>q;
+			int visit[S][S] = { 0, };
+			q.push(v[i]);
+			cchk = 0;
+			while (!q.empty()) {
+				Data c = q.front(); q.pop();
+				if (c.y == v[j].y&&c.x == v[j].x) {
+					G[i][j] = G[j][i] = c.cnt;
+					cchk = 1;
+					break;
+				}
+				for (int dir = 0; dir < 4; dir++) {
+					Data n;
+					n.y = c.y + dy[dir];
+					n.x = c.x + dx[dir];
+					n.cnt = c.cnt + 1;
+					if (safe(n.y, n.x) &&input[n.y][n.x]=='.'&&visit[n.y][n.x]==0 ) {
+						visit[n.y][n.x] = 1;
+						q.push(n);
+
+					}
+
+				}
+
+			}
+			if (cchk == 0)return - 1;
+		}
+	}
+	//for (int i = 0; i < v.size(); i++) {
+	//	for (int j = 0; j < v.size(); j++) {
+	//		cout << G[i][j] << " ";
+	//	}
+	//	cout << endl;
+	//}
+
+	return 1;
+}
+int dfs_chk[S];
+vector<int>d1;
+void DFS(int idx, int d) {
+	if (d == garbage.size()) {
+		//for (int i = 0; i < d1.size()	; i++) {
+		//	cout << d1[i] << " ";
+		//}
+		//cout << endl;
+		int sum = 0;
+		sum += G[0][d1[0]];
+		for (int i = 0; i <d1.size()-1; i++) {
+			sum += G[d1[i]][d1[i + 1]];
+		}
+		ret = ret > sum ? sum : ret;
+		return;
+	}
+	for (int i = 1; i <= garbage.size(); i++) {
+		if (dfs_chk[i] == 0) {
+			dfs_chk[i] = 1;
+			d1.push_back(i);
+			DFS(i, d + 1);
+			d1.pop_back();
+			dfs_chk[i] = 0;
+		}
+	}
+
+}
+int main(void) {
+	while (cin >> M>> N) {
+		if (N == 0 && M == 0) break;
+		init_input();
+		if (BFS() == 1) {
+			DFS(0, 0);
+		}
+		else {
+			ret = -1;
+		}
+		cout << ret << endl;
+		init();
+
+	}
+
 	return 0;
 }

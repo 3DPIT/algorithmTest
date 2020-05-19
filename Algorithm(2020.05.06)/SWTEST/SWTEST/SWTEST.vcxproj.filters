@@ -114,5 +114,11 @@
     <ClCompile Include="16957 체스판 위의 공.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="16988 Baaaaaaaaaduk2 (Easy)(프린트).cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="16988 Baaaaaaaaaduk2 (Easy).cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

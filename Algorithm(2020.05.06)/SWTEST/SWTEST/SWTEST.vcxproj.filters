@@ -120,5 +120,23 @@
     <ClCompile Include="16988 Baaaaaaaaaduk2 (Easy).cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="16986 인싸들의 가위바위보(프린트).cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="16986 인싸들의 가위바위보.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="1463 1로 만들기.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="1463 1로만들기.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="11726 2Xn 타일링.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="최대상금.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

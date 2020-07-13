@@ -1,82 +1,48 @@
-#include <string>
-#include <vector>
-#include <map>
-#include<iostream>
+#include <stdio.h>
+#include <algorithm>
 using namespace std;
-map<string, int>m;
-vector<int> solution(vector<string> gems) {
-	vector<int> answer;
-	int cnt = 1;
-	for (int i = 0; i < gems.size(); i++) {
-		if (m[gems[i]] == 0) {
-			m[gems[i]] = cnt++;
+int arr[20] = { 0, };
+int a_size = 0;
+void MergeTwoArea(int arr[], int left, int mid, int right)
+{
+	int fidx = left;
+	int ridx = mid + 1;
+	int sidx = left;
+	int temp[100] = { 0, };
+	while (fidx <= mid && ridx <= right) {
+		if (arr[fidx] < arr[ridx]) {
+			temp[sidx++] = arr[fidx++];
+		}
+		else
+			temp[sidx++] = arr[ridx++];
+	}
+	if (fidx > mid) {
+		for (int i = ridx; i <= right;i++, sidx++) {
+			temp[sidx] = arr[i];
 		}
 	}
-	int chk_cnt = 0;
-	int mind = 0x7fffffff;
-	cnt--;
-	int y, x;
-	int S = 0, E = 0;
-	while (S != gems.size() && E != gems.size()) {
-		int chk[100000] = { 0 };
-		int cnt1 = 0;
-		for (int i = S; i <= E; i++) {
-			if (chk[m[gems[i]]] == 0) {
-				chk[m[gems[i]]] = 1;
-				cnt1++;
-			}
+	else {
+		for (int i = fidx; i <= mid; i++, sidx++) {
+			temp[sidx] = arr[i];
 		}
-		if (E == gems.size()) {
-			E = S;
-			S++; E++;
-		}
-		if (cnt1 < cnt)E++;
-		else if (cnt1 > cnt)S++;
-		else if (cnt1 == cnt) {
-			int d = E - S + 1;
-			if (mind > d) {
-				mind = d;
-				y = S;
-				x = E;
-			}
-			S++;
-			//E = S;
-		}
-
 	}
-
-	answer.push_back(y + 1);
-	answer.push_back(x + 1);
-	return answer;
+	for (int i = left; i <= right; i++) {
+		arr[i] = temp[i];
+	}
 }
-int main(void) {
-	vector<int>a= solution({ "DIA", "RUBY", "RUBY", "DIA", "DIA", "EMERALD", "SAPPHIRE", "DIA" });
-	//for (int i = 0; i < a.size(); i++) {
-	//	cout << a[i];
-	//}
-	//cout << endl;
-	//a.clear();
-	//vector<int>a = solution({ "AA", "AB", "AC", "AA", "AC" });
-	//for (int i = 0; i < a.size(); i++) {
-	//	cout << a[i];
-	//}
-	//cout << endl;
-	//a.clear();
-
-	//vector<int>a = solution({ "XYZ", "XYZ", "XYZ" });
-	//for (int i = 0; i < a.size(); i++) {
-	//	cout << a[i];
-	//}
-	//cout << endl;
-	//a.clear();
-
-	//vector<int>a = solution({ "ZZZ", "YYY", "NNNN", "YYY", "BBB" });
-	for (int i = 0; i < a.size(); i++) {
-		cout << a[i];
+void MergeSort(int arr[], int left, int right)
+{
+	if (left < right) {
+		int mid = (left + right) / 2;
+		MergeSort(arr, left, mid);
+		MergeSort(arr, mid + 1, right);
+		MergeTwoArea(arr, left, mid, right);
 	}
-	cout << endl;
-	a.clear();
-
-	return 0;
-
+}
+int main(void)
+{
+	scanf("%d", &a_size);
+	for (int i = 0; i < a_size; i++)scanf("%d", &arr[i]);
+	MergeSort(arr,0, a_size-1);\
+	for (int i = 0; i < a_size; i++) printf("%d ", arr[i]);
 }

@@ -24,5 +24,8 @@
     <ClCompile Include="프로그래머스 네트워크.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="9944 NxM 보드 완주하기.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

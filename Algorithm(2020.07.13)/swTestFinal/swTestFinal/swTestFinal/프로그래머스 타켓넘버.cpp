@@ -1,31 +1,32 @@
-
 #include <string>
-#include<iostream>
 #include <vector>
-
+#include <queue>
+#include<iostream>
+#include<string>
+#include<map>
 using namespace std;
+int ret = 0;//ÃÖÁ¾°ª
+int d[21] = { 0 };
+void dfs(int idx,int &target,vector<int>&numbers) {
+	if (idx == numbers.size()) {
 
-int total;
-
-void DFS(vector<int> &numbers, int &target, int sum, int n) {
-	if (n >= numbers.size()) {
-		if (sum == target) total++;
+		int num = 0;
+		for (int i = 0; i < numbers.size();i++) {
+			num += numbers[i] * d[i];
+		}
+		if (num == target) ret++;
 		return;
 	}
+	d[idx] = 1;
+	dfs(idx + 1, target, numbers);
+	d[idx] = -1;
+	dfs(idx + 1, target, numbers);	
 
-	DFS(numbers, target, sum + numbers[n], n + 1);
-	DFS(numbers, target, sum - numbers[n], n + 1);
 }
-
 int solution(vector<int> numbers, int target) {
 	int answer = 0;
-
-	DFS(numbers, target, numbers[0], 1);
-	DFS(numbers, target, -numbers[0], 1);
-
-	answer = total;
-
-	return answer;
+	dfs(0, target, numbers);
+	return answer=ret;
 }
 int main(void) {
 	cout << solution({ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 }, 3);

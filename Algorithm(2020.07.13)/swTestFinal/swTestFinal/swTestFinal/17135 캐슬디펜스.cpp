@@ -69,13 +69,13 @@ int emermyDie() {
 							//		}
 							//	}
 							//}//
-							//if (d <= D) {
-							//	if (minD > d || (minD == d && minX > x)) {
-							//		minD = d;
-							//		minY = y;
-							//		minX = x;
-							//	}
-							//}
+							if (d <= D) {
+								if (minD > d || (minD == d && minX > x)) {
+									minD = d;
+									minY = y;
+									minX = x;
+								}
+							}
 						}
 					}
 				}

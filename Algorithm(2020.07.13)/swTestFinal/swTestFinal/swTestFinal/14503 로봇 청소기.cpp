@@ -2,7 +2,7 @@
 #include<iostream>
 #include<vector>
 using namespace std;
-#define MAP_SIZE 31
+#define MAP_SIZE 51
 int N, M;//행 열
 int map[MAP_SIZE][MAP_SIZE];
 int dy[] = { -1,0,1,0 };
@@ -21,7 +21,7 @@ void init() {
 	}
 }
 void play() {
-	int clean_room = 2;
+	int clean_room = 1;
 	while (1) {// 무한 반복
 		if (map[y][x] == 0) {//현재 위치를 청소한다.
 			map[y][x] = ++clean_room;
@@ -53,7 +53,7 @@ void play() {
 		}
 		//로봇 청소기는 이미 청소되어있는 칸을 또 청소하지 않으며, 벽을 통과할 수 없다.
 	}
-	cout << clean_room - 1<<endl;
+	cout << clean_room - 1<endl;
 }
 int main(void) {
 	init();

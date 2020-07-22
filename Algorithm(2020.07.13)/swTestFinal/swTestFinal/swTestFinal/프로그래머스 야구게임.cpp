@@ -14,6 +14,7 @@ bool chk(vector<vector<int>> &baseball,vector<int> &num) {// 조건이 맞는지 체크
 		n100 = baseball[i][0] / 100;
 		n10 = (baseball[i][0] % 100)/10;
 		n1 = (baseball[i][0] % 100) % 10;
+		//스트라이크 판별
 		if (num[0] ==n100) {
 			strike++;
 		}
@@ -23,6 +24,7 @@ bool chk(vector<vector<int>> &baseball,vector<int> &num) {// 조건이 맞는지 체크
 		if (num[2] == n1) {
 			strike++;
 		}
+		//볼 판별
 		if (num[0] == n10||num[0]==n1) {
 			ball++;
 		}
@@ -42,9 +44,9 @@ bool chk(vector<vector<int>> &baseball,vector<int> &num) {// 조건이 맞는지 체크
 void dfs(int idx,int num_chk[10],vector<vector<int>> &baseball,int &answer) {
 	if (idx== 3) {
 		//여기서 판별 같은 것인지
-		for (int i = 0; i < 3; i++) {
-			cout << a[i];
-		}
+		//for (int i = 0; i < 3; i++) {
+		//	cout << a[i];
+		//}
 		cout << endl;
 		if (chk(baseball,a)) {
 			answer++;

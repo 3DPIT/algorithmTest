@@ -29,7 +29,7 @@ bool safe(int y, int x) {//맵의 범위 넘어가는지 체크
 	return 0 <= y && y < N && 0 <= x && x < M;
 }
 void search(int dir, int y, int x) {//경로에 표시하기
-	dir = (dir % 4);
+	dir = (dir % 4);// dir 회전 
 	while (1) {
 		int ny = y + dy[dir]; int nx = x + dx[dir];
 		if (room[ny][nx] != 6&&safe(ny,nx)) {

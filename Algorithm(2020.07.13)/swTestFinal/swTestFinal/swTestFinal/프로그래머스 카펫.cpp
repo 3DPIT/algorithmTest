@@ -11,7 +11,7 @@ vector<int> solution(int brown, int yellow) {
 	for ( i = 3; i <= sum; i++) {//3이상의 크기부터 돌리기
 		 j = sum / i;
 		if (i <= j) {
-			if (yellow == (i-2) * (j-2)) {
+			if (yellow == (i-2) * (j-2)) { //가로 세로 를 -2 정도해준것의 곱이 yellow와 같아야 가운데 있는거임으로 
 				answer.push_back(j);
 				answer.push_back(i);
 				break;

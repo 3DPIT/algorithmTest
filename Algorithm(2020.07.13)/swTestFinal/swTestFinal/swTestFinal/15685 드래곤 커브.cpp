@@ -6,7 +6,7 @@
 using namespace std;
 #define MAP_SIZE 101
 int N;
-int map[MAP_SIZE][MAP_SIZE];
+int map[MAP_SIZE+4][MAP_SIZE+4];
 int dy[] = { 0,-1,0,1 };
 int dx[] = { 1,0,-1,0 };
 struct Data {
@@ -42,8 +42,8 @@ int main(void) {
 	}
 	//1x1 정사각형 찾기
 	int ret = 0;//정사각형 개수 저장
-	for (int i = 0; i < 100-1; i++) {
-		for (int j = 0; j < 100-1; j++) {
+	for (int i = 0; i < 100; i++) {
+		for (int j = 0; j < 100; j++) {
 			if (map[i][j] == 1 && map[i][j + 1] == 1
 				&& map[i + 1][j] == 1 && map[i + 1][j + 1] == 1) {
 				ret++;

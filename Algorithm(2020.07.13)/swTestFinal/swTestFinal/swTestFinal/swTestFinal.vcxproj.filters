@@ -75,5 +75,11 @@
     <ClCompile Include="프로그래머스 주식가격.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="15684 사다리조작.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="프로그래머스 기능개발.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

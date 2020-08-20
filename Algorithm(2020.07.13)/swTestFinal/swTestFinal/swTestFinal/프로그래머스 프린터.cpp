@@ -34,7 +34,7 @@ int solution(vector<int> priorities, int location) {
 		}
 	}
 	for (int i = 0; i < ret.size(); i++) {
-		if (ret[i] == location) { answer = i; break; }
+		if (ret[i] == location) { answer = i+1; break; }
 	}
 	return answer;
 }

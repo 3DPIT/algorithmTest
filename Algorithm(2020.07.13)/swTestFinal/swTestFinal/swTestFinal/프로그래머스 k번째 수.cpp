@@ -9,10 +9,12 @@ vector<int> solution(vector<int> array, vector<vector<int>> commands) {
 	vector<int> tempArray;
 	for (int  ci= 0; ci < commands.size(); ci++) {
 		tempArray = array;
-		int i = commands[ci][0];
-		int j = commands[ci][1];
-		int k = commands[ci][2];
+		int i = commands[ci][0];//i 값
+		int j = commands[ci][1];//j 값
+		int k = commands[ci][2];//k 값
 		sort(tempArray.begin() + i - 1, tempArray.begin() + j);
+		//원하는 범위만 정렬 
+		//원하는 범위에서 k번째는 i+k-2 의 인덱스
 		answer.push_back(tempArray[i+k-2]);
 		
 

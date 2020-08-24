@@ -182,7 +182,10 @@
     <ClCompile Include="kakaoTest.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="프로그래머스 k번째 수.cpp" />
+    <ClCompile Include="기초 연습하기.cpp" />
+    <ClCompile Include="프로그래머스 k번째 수.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="프로그래머스 기능개발.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>

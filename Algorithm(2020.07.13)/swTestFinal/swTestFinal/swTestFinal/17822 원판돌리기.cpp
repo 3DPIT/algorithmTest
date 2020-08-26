@@ -21,7 +21,6 @@ void init() {
 	memset(visit, 0, sizeof(visit));
 	N = M = T = ret = 0;
 	scanf("%d %d %d", &N, &M, &T);
-	 cM = M;
 	for (int i = 0; i < N; i++) {// 데이터 입력
 		for (int j = 0; j < M; j++) {
 			scanf("%d", &cycleInput[i][j]);
@@ -121,7 +120,11 @@ void DFS() {
 	}//if(FLAG) 끝부분
 }
 void arrSum() {
-
+	for (int i = 0; i < N; i++) {
+		for (int j = 0; j < M; j++) {
+			ret += cycleInput[i][j];
+		}
+	}
 }
 void Rotation() {// 최종으로 돌아가면서 계산하는곳
 	for (int t = 1; t <= T; t++) {//시작

@@ -18,7 +18,10 @@
     <ClCompile Include="소스.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="001,16236 아기상어.cpp">
+    <ClCompile Include="002, 프로그래머스 가장큰수.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="001, 16236 아기상어.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

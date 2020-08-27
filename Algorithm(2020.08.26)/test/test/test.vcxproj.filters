@@ -24,7 +24,10 @@
     <ClCompile Include="001, 16236 아기상어.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="03, 17825 주사위 윷놀이.cpp">
+    <ClCompile Include="003, 17825 주사위 윷놀이.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="004, 프로그래머스 H-Index.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

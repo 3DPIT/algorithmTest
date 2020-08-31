@@ -30,5 +30,8 @@
     <ClCompile Include="004, 프로그래머스 H-Index.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="005, 17136 색종이 붙이기.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

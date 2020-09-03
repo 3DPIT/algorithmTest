@@ -39,5 +39,11 @@
     <ClCompile Include="007, 17135 캐슬 디펜스.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="008, 17780 새로운 게임.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="17779 게리맨더링2.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

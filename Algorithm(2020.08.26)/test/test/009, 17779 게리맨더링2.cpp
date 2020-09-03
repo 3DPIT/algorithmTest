@@ -67,7 +67,6 @@ void five(int X, int Y, int d1, int d2) {
 		for (int x = sx[i]; x <= ex[i]; x++) {
 			for (int y = sy[i]; y <= ey[i]; y++) {
 				if(safe(x, y)) {
-					cout << x << y << endl;
 					D[x][y] = 5;
 				}
 			}
@@ -148,8 +147,6 @@ void PLAY() {
 					if (x + d1 + d2 <= N && y - d1 < y&&y + d2 <= N) {
 						memset(D, 0, sizeof(D));
 						five(x, y, d1, d2);
-						P(D);
-						cout << endl;
 						one(x, y, d1, d2);
 						two(x, y, d1, d2);
 						three(x, y, d1, d2);

@@ -171,6 +171,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="008, 117780 새로운 게임.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -183,10 +184,15 @@
     </ClCompile>
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> badc1eefd22747d880b3c58c5b073ab818471d8b
     <ClCompile Include="008, 17780 새로운 게임.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="17779 게리맨더링2.cpp" />
+<<<<<<< HEAD
+>>>>>>> badc1eefd22747d880b3c58c5b073ab818471d8b
+=======
 >>>>>>> badc1eefd22747d880b3c58c5b073ab818471d8b
     <ClCompile Include="소스.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>

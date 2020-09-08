@@ -40,6 +40,7 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <ClCompile Include="008, 117780 새로운 게임.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -51,10 +52,15 @@
     </ClCompile>
     <ClCompile Include="010, 17140 이차원 배열과 연산.cpp">
 =======
+=======
+>>>>>>> badc1eefd22747d880b3c58c5b073ab818471d8b
     <ClCompile Include="008, 17780 새로운 게임.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="17779 게리맨더링2.cpp">
+<<<<<<< HEAD
+>>>>>>> badc1eefd22747d880b3c58c5b073ab818471d8b
+=======
 >>>>>>> badc1eefd22747d880b3c58c5b073ab818471d8b
       <Filter>소스 파일</Filter>
     </ClCompile>

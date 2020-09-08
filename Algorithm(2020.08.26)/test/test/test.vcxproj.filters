@@ -39,5 +39,24 @@
     <ClCompile Include="007, 17135 캐슬 디펜스.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="008, 117780 새로운 게임.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="로또.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="009, 13460 구슬 탈출 2.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="010, 17140 이차원 배열과 연산.cpp">
+=======
+    <ClCompile Include="008, 17780 새로운 게임.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="17779 게리맨더링2.cpp">
+>>>>>>> badc1eefd22747d880b3c58c5b073ab818471d8b
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -154,6 +154,7 @@
     <ClCompile Include="003, 17825 주사위 윷놀이.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+<<<<<<< Updated upstream
     </ClCompile>
     <ClCompile Include="004, 프로그래머스 H-Index.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -194,6 +195,12 @@
 >>>>>>> badc1eefd22747d880b3c58c5b073ab818471d8b
 =======
 >>>>>>> badc1eefd22747d880b3c58c5b073ab818471d8b
+=======
+    </ClCompile>
+    <ClCompile Include="004, 프로그래머스 H-Index.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+>>>>>>> Stashed changes
     <ClCompile Include="소스.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>

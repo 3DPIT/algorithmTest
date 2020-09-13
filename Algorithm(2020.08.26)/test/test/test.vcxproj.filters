@@ -81,5 +81,17 @@
     <ClCompile Include="09.12 카카오6.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="09.13라인1.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="09.13 라인2.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="09.13 라인3.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="09.13 라인4.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

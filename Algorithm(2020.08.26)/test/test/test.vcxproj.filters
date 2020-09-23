@@ -42,7 +42,7 @@
     <ClCompile Include="008, 17780 새로운 게임.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="17779 게리맨더링2.cpp">
+    <ClCompile Include="009, 17779 게리맨더링2.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

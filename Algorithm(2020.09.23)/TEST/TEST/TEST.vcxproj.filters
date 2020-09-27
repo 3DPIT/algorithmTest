@@ -33,5 +33,14 @@
     <ClCompile Include="004, 2382. [모의 SW 역량테스트] 미생물 격리.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="네이버1.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="네이버2.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="네이버3.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

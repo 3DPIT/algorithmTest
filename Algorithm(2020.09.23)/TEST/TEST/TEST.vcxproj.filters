@@ -42,5 +42,8 @@
     <ClCompile Include="네이버3.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="005, 2105. [모의 SW 역량테스트] 디저트 카페.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

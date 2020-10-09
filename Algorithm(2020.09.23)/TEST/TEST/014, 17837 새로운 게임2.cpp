@@ -167,14 +167,14 @@ void gameStart() {
 }
 int main(void) {
 	int T = 1;
-	scanf("%d", &T);
+	//scanf("%d", &T);
 	for (int tc = 1; tc <= T; tc++) {
 		//초기화 및 입력
 		init_input();
 		gameStart();//알고리즘 게임 시작
 		//출력
 		printf("%d\n", ret);
-		printf("#%d %d\n", tc, ret);
+		//printf("#%d %d\n", tc, ret);
 	}
 	return 0;
 }

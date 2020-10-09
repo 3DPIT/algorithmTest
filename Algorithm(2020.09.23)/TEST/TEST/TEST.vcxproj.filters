@@ -66,5 +66,11 @@
     <ClCompile Include="012, 17144 미세먼지 안녕!.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="013, 17142 연구소 3.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="014, 17837 새로운 게임2.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

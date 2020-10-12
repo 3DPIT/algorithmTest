@@ -68,39 +68,44 @@ void reclockTurn(int num, int cnt) {//반시계방향 턴
 	}
 }
 void dfs(int y, int x, int num) {//같은 수 제거 dfs
+	//넘겨 줄수 있는 것 x==-1 -> x=M-1 
+	// x==M -> x=0;
+	//넘어가면 안되는 범위
+	//y==-1, y==N+1
 	for (int dir = 0; dir < 4; dir++) {
-		Data1 n; n.y = y + dy[dir]; n.x = x + dx[dir];//다음 좌표
-//넘겨 줄수 있는 것 x==-1 -> x=M-1 
-// x==M+1 -> x=0;
-//넘어가면 안되는 범위
-//y==-1, y==N+1
-		if (n.y != -1 && n.y != N && (n.x == M || n.x == -1)) {
-			if (n.x == M) {
-				n.x = 0;
-			}
+		Data1 n;
+		n.y = y + dy[dir]; n.x = x + dx[dir];
+		if (n.y != -1 && n.x != N + 1) {
 			if (n.x == -1) {
 				n.x = M - 1;
 			}
+			if (n.x == M) {
+				n.x = 0;
+			}
 		}
-		if (num == circle[n.y][n.x] && visit[n.y][n.x] == 0) {
-			flag = 1;
-			visit[n.y][n.x] = 1;
+		if (visit[n.y][n.x] == 0 && circle[n.y][n.x] == num) {
 			circle[n.y][n.x] = 0;
+			visit[n.y][n.x] = 1;
+			flag = 1;
 			dfs(n.y, n.x, num);
 		}
+
 	}
 }
 void DFS() {//같은수 제거하기 위함
+	memset(visit, 0, sizeof(visit));
 	int f = 0;
 	for (int i = 0; i < N; i++) {
 		for (int j = 0; j < M; j++) {
 			if (circle[i][j] != 0) {
 				visit[i][j] = 1;
 				dfs(i, j, circle[i][j]);
-				if (flag == 1)f = 1;
-				if (flag)circle[i][j] = 0;
-				flag = 0;
-				memset(visit, 0, sizeof(visit));
+				if (flag) {
+					f = 1;
+					circle[i][j] = 0;
+					visit[i][j] = 1;
+					flag = 0;
+				}
 			}
 		}
 	}
@@ -152,7 +157,11 @@ void circleTurn() {
 			}//for i
 		}//if flag
 	}//for t
-	chkNum();
+	for (int i = 0; i < N; i++) {
+		for (int j = 0; j < M; j++) {
+			ret += circle[i][j];
+		}
+	}
 }
 int main(void) {
 	int testCase = 1;//테스트 케이스 개수

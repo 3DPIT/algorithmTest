@@ -104,12 +104,12 @@ void Play() {//시뮬시작
 }
 int main(void) {
 	int T = 1;//테스트 케이스 개수
-	scanf("%d", &T);
+	//scanf("%d", &T);
 	for (int tc = 1; tc <= T; tc++) {
 		init_input();//초기화 및 초기 입력
 		Play();
 		//출력
-		printf("%d\n", ret); printf("#%d %d\n", tc, ret);
+		printf("%d\n", ret); //printf("#%d %d\n", tc, ret);
 	}
 	return 0;
 }

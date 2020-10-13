@@ -29,9 +29,9 @@ void init_input() {//초기화 및 초기 입력
 		scanf("%d %d %d %d %d", &c.y, &c.x, &c.s, &c.d, &c.z);
 			if (c.d == 1 || c.d == 2) {
 				//위아래 경우 스피드 줄이기
-				c.s = (c.s % ((N*2)-2));
+				c.s = (c.s % ((N*2)-2));//(N-1)*2;
 			}
-			else if (c.d == 3 || c.d == 4) {
+			else if (c.d == 3 || c.d == 4) {//(M-1)*2
 				c.s = (c.s% ((M * 2) - 2));
 			}
 		shark.push_back(c);//상어 정보 입력
@@ -87,11 +87,7 @@ void fishing() {
 				if (shark[a].y == shark[b].y&&shark[a].x == shark[b].x) {//같으면 종료
 					if (maxSize < shark[b].z) {//가장큰 개체 선별하기
 						maxSize = shark[b].z;
-						cM.y = shark[b].y;
-						cM.x = shark[b].x;
-						cM.d = shark[b].d;
-						cM.s = shark[b].s;
-						cM.z = shark[b].z;
+						cM = shark[b];
 					}
 					cnt++;
 				}

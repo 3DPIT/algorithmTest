@@ -91,16 +91,16 @@ void eatFish() {//먹이 사냥 시작
 }
 int main(void) {
 	int T = 1;//테스트 케이스
-	scanf("%d", &T);
+	//scanf("%d", &T);
 	for (int tc = 1; tc <= T; tc++) {
 		if(init_input()){//초기화 및 초기 입력
 			eatFish();// 물고기 사냥 시작
 			//출력
-			printf("%d\n", ret); printf("#%d %d\n", tc, ret);
+			printf("%d\n", ret);// printf("#%d %d\n", tc, ret);
 		}
 		else {//물고기 없는 경우
 			//출력
-			printf("%d\n", ret); printf("#%d %d\n", tc, ret);
+			printf("%d\n", ret); //printf("#%d %d\n", tc, ret);
 		}
 	}
 	return 0;

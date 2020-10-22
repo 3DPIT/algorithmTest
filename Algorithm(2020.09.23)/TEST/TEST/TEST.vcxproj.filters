@@ -123,5 +123,26 @@
     <ClCompile Include="030, 17140 이차원 배열과 연산.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="031, 17825 주사위 윷놀이.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="032, 19235 모노미노도미노.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="033, 19237 어른 상어.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="035, 19238 스타트 택시.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="034, 19236 청소년 상어.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="036, 2161 카드1.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="037, 2947 나무 조각.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
